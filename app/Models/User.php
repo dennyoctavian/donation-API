@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'photos',
+        'wallet',
+        'role'
     ];
 
     /**
@@ -41,4 +44,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function campaign()
+    {
+        $this->hasMany(Campaign::class, 'user_id');
+    }
+
+    public function prays()
+    {
+        $this->hasMany(Pray::class, 'user_id');
+    }
 }
