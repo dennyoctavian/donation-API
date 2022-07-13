@@ -24,12 +24,12 @@ class Campaign extends Model
 
     public function user()
     {
-        return $this->BelongsTo(User::class);
+        return $this->BelongsTo(User::class, 'user_id');
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function pictures()

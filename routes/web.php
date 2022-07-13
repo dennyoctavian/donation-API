@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Campaign;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(BaseController::class)->group(function () {
+    Route::get('/', 'index');
 });

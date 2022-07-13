@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pray extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
     protected $table = 'prays';
 
     protected $fillable = [
