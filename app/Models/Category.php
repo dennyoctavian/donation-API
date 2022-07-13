@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'categories';
+
 
     protected $fillable = [
         'category'
@@ -16,6 +18,6 @@ class Category extends Model
 
     public function campaign()
     {
-        $this->hasMany(Campaign::class, 'campaign_id');
+        $this->hasMany(Campaign::class);
     }
 }

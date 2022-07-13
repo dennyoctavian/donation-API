@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('target_funds');
             $table->bigInteger('total_donation');
             $table->longText('description');
-            $table->enum('status', array('waiting', 'approved', 'done'));
+            $table->enum('status', array('waiting', 'approved', 'rejected', 'done'));
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('category_id');

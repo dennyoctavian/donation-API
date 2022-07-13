@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Campaign extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'campaigns';
 
     protected $fillable = [
         'title',

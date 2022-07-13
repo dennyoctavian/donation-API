@@ -20,10 +20,18 @@ class UserController extends Controller
             "name" => "required|string",
             "email" => "required|string|email",
             "password" => "required|string",
+            "confirm_password" => "required|string",
             "photos" => "required",
             "wallet" => "required|integer",
         ]);
-        $userDatabase = User::where("email", $request['email']);
+
+        if ($request['password'] != $request['confirm_password']) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Password and Confirm Password doesn\'t match',
+            ]);
+        }
+        $userDatabase = User::where("email", $request['email'])->first();
         if ($userDatabase) {
             return response()->json([
                 'status' => 'failed',
@@ -31,9 +39,15 @@ class UserController extends Controller
             ]);
         }
         $passwordHashed = Hash::make($request['password']);
-        $request['password'] = $passwordHashed;
-        $request['role'] = "user";
-        $user = User::create($request);
+
+        $user = User::create([
+            "name" => $request['name'],
+            "email" => $request['email'],
+            "password" => $passwordHashed,
+            "photos" => $request['photos'],
+            "wallet" => $request['wallet'],
+            'role' => "user"
+        ]);
         $token = Auth::login($user);
         return response()->json([
             'status' => 'success',

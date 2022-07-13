@@ -13,6 +13,8 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -48,12 +50,17 @@ class User extends Authenticatable implements JWTSubject
 
     public function campaign()
     {
-        $this->hasMany(Campaign::class, 'user_id');
+        $this->hasMany(Campaign::class, 'campaign_id');
     }
 
     public function prays()
     {
         $this->hasMany(Pray::class, 'user_id');
+    }
+
+    public function transactions()
+    {
+        $this->hasMany(Transaction::class, 'user_id');
     }
 
     public function getJWTIdentifier()
