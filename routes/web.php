@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Campaign;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +12,3 @@ use App\Http\Controllers\BaseController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::controller(BaseController::class)->group(function () {
-    Route::get('/', 'index');
-});

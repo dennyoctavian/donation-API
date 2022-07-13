@@ -50,17 +50,17 @@ class User extends Authenticatable implements JWTSubject
 
     public function campaign()
     {
-        $this->hasMany(Campaign::class, 'campaign_id');
+        return $this->hasMany(Campaign::class);
     }
 
     public function prays()
     {
-        $this->hasMany(Pray::class, 'user_id');
+        return $this->hasMany(Pray::class, 'user_id');
     }
 
     public function transactions()
     {
-        $this->hasMany(Transaction::class, 'user_id');
+        return $this->hasMany(Transaction::class, 'user_id');
     }
 
     public function getJWTIdentifier()
